@@ -2,6 +2,7 @@ package DevNews.Articles;
 
 
 import DevNews.Comments.Comment;
+import DevNews.Topics.Topic;
 
 import javax.persistence.*;
 import java.util.List;
@@ -23,6 +24,9 @@ public class Article {
 
     @OneToMany
     private List<Comment> comments;
+
+    @ManyToMany
+    private List<Topic> topicList;
 
 
     //DefaultConstructor
@@ -68,6 +72,14 @@ public class Article {
 
     public void setAuthorName(String authorName) {
         this.authorName = authorName;
+    }
+
+    public List<Topic> getTopicList() {
+        return topicList;
+    }
+
+    public void setTopicList(List<Topic> topicList) {
+        this.topicList = topicList;
     }
 }
 

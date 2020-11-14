@@ -11,15 +11,18 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/articles")
-class TaskController {
+class ArticleController {
 
 @Autowired
 private ArticleService articleService;
 
     //get list all tasks
     @GetMapping("")
-    public List<Article> getAll(){
-    return articleService.getAll();
+    public List<Article> getAll(@RequestParam (required = false) Long topicId){
+    if(topicId != null){
+        return articleService.getAllByTopicId(topicId);
+    }
+       else{ return articleService.getAll();}
 }
 
     //get specific task by ID
